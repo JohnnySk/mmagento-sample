@@ -1,0 +1,52 @@
+<?php
+/**
+ * Cart cross sell items custom template
+ *
+ * @see SK_Simple_Block_Crossblock
+ */
+?>
+<?php if($this->getItemsCount()) : ?>
+    <form action="<?php echo Mage::getBaseUrl(); ?>simple/index/add" method="post" name="crossblock">
+    <div class="crosssell">
+        <button class="button btn-cart" type="submit" title="Add Products" disabled="disabled"><span><span>Add</span></span></button>
+        <h2><?php echo $this->__('Cross Sell Products: '); ?></h2>
+        <ul id="crosssell-products-list">
+            <?php foreach($this->getBlockItems() as $crossSell) : ?>
+                <li class="item">
+                    <a class="product-link" href="<?php echo $crossSell->getProductUrl() ?>"
+                       title="<?php echo $this->escapeHtml($crossSell->getName()) ?>"><img
+                            src="<?php echo $this->helper('catalog/image')->init($crossSell, 'thumbnail')->resize(75); ?>"
+                            width="75" height="75" alt="<?php echo $this->escapeHtml($crossSell->getName()) ?>"/></a>
+                    <div class="product-details">
+                        <h3 class="product-name"><a
+                                href="<?php echo $crossSell->getProductUrl() ?>"><?php echo $this->escapeHtml($crossSell->getName()) ?></a>
+                        </h3>
+                        <?php echo $this->getPriceHtml($crossSell, true) ?>
+                        <input class="crosssell-check" type="checkbox" value="<?php echo $this->escapeHtml($crossSell->getId()); ?>" name="<?php echo $this->escapeHtml($crossSell->getId()); ?>">
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    </form>
+    <script>
+        jQuery(function($){
+            $('input.crosssell-check').on('click', function() {
+                var button = $('div.crosssell button');
+                var number = 0;
+                $('div.crosssell input').each(function () {
+                    if ($(this).prop('checked')) {
+                        number = number + 1;
+                    }
+                });
+                if (number > 0) {
+                    button.prop('disabled', false);
+                    button.find('span').text('Add ' + number);
+                } else {
+                    button.prop('disabled', true);
+                    button.find('span').text('Add');
+                }
+            });
+        });
+    </script>
+<?php endif; ?>

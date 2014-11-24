@@ -1,0 +1,8 @@
+<h1><?php print $this->getBlockInfo(); ?></h1>
+<?php if(isset($numbers)) : ?>
+    <div>
+        <?php foreach($numbers as $number) : ?>
+            <span><?php print $number; ?></span>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
