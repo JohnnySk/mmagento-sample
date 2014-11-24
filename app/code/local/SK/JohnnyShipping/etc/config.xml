@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <modules>
+        <SK_JohnnyShipping>
+            <version>0.0.2</version>
+        </SK_JohnnyShipping>
+    </modules>
+    <global>
+        <models>
+            <johnnyshipping>
+                <class>SK_JohnnyShipping_Model</class>
+                <resourceModel>johnnyshipping_resource</resourceModel>
+            </johnnyshipping>
+            <johnnyshipping_resource>
+                <class>SK_JohnnyShipping_Model_Resource</class>
+                <entities>
+                    <city>
+                        <table>johnnyshipping_city</table>
+                    </city>
+                    <region>
+                        <table>johnnyshipping_region</table>
+                    </region>
+                    <district>
+                        <table>johnnyshipping_district</table>
+                    </district>
+                    <tariff>
+                        <table>johnnyshipping_tariff</table>
+                    </tariff>
+                </entities>
+            </johnnyshipping_resource>
+        </models>
+        <resources>
+            <johnnyshipping_setup>
+                <setup>
+                    <module>SK_JohnnyShipping</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </johnnyshipping_setup>
+            <johnnyshipping_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </johnnyshipping_write>
+            <johnnyshipping_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </johnnyshipping_read>
+        </resources>
+        <helpers>
+            <johnnyshipping>
+                <class>SK_JohnnyShipping_Helper</class>
+            </johnnyshipping>
+        </helpers>
+        <blocks>
+            <johnnyshipping>
+                <class>SK_JohnnyShipping_Block</class>
+            </johnnyshipping>
+        </blocks>
+    </global>
+
+    <frontend>
+        <routers>
+            <johnnyshipping>
+                <use>standard</use>
+                <args>
+                    <module>SK_JohnnyShipping</module>
+                    <frontName>johnnyshipping</frontName>
+                </args>
+            </johnnyshipping>
+        </routers>
+        <layout>
+            <updates>
+                <johnnyshipping>
+                    <file>johnnyshipping/johnnyshipping.xml</file>
+                </johnnyshipping>
+            </updates>
+        </layout>
+    </frontend>
+
+    <admin>
+        <routers>
+            <johnnyshipping_admin>
+                <use>admin</use>
+                <args>
+                    <module>SK_JohnnyShipping</module>
+                    <frontName>johnnyshipping_admin</frontName>
+                </args>
+            </johnnyshipping_admin>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <menu>
+            <johnnyshipping translate="title" module="johnnyshipping">
+                <title>Johnny Shipping</title>
+                <!-- This is the URL of what we want the menu item to link to -->
+                <action>johnnyshipping_admin/adminhtml_johnnyshipping</action>
+                <sort_order>50</sort_order>
+            </johnnyshipping>
+        </menu>
+    </adminhtml>
+
+    <default>
+        <carriers>
+            <johnnyshipping>
+                <active>1</active>
+                <model>johnnyshipping/carrier</model>
+                <title>Johnny Shipping Carrier</title>
+                <sort_order>10</sort_order>
+                <sallowspecific>0</sallowspecific>
+            </johnnyshipping>
+        </carriers>
+    </default>
+</config>

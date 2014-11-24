@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <johnnyshipping translate="title" module="johnnyshipping">
+                        <title>Johnny Shipping!!!</title>
+                    </johnnyshipping>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
