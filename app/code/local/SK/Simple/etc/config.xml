@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <SK_Simple>
+            <version>0.0.1</version>
+        </SK_Simple>
+    </modules>
+    <frontend>
+        <routers>
+            <simple>
+                <use>standard</use>
+                <args>
+                    <module>SK_Simple</module>
+                    <frontName>simple</frontName>
+                </args>
+            </simple>
+        </routers>
+        <layout>
+            <updates>
+                <simple>
+                    <file>simple.xml</file>
+                </simple>
+            </updates>
+        </layout>
+        <events>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <interceptAddedProduct>
+                        <class>SK_Simple_Model_Observer</class>
+                        <method>interceptAddedProduct</method>
+                    </interceptAddedProduct>
+                </observers>
+            </checkout_cart_product_add_after>
+        </events>
+    </frontend>
+    <global>
+        <blocks>
+            <simple>
+                <class>SK_Simple_Block</class>
+            </simple>
+        </blocks>
+    </global>
+</config>

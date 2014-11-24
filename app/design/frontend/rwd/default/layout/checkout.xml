@@ -116,7 +116,8 @@ Default layout, loads most of the pages
                 <block type="core/text_list" name="checkout.cart.widget" as="checkout_cart_widget" translate="label">
                     <label>Shopping Cart Items After</label>
                 </block>
-                <block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml"/>
+                <!--<block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml"/>-->
+                <block type="simple/crossblock" name="checkout.cart.crosssell" as="crosssell" template="simple/crossblock.phtml" after="checkout.cart.shipping"/>
 
                 <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
             </block>

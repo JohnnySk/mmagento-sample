@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <SK_Simple>
+            <active>true</active>
+            <codePool>local</codePool>
+        </SK_Simple>
+    </modules>
+</config>
