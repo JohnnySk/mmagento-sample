@@ -1,0 +1,215 @@
+<?php $_shipment       = $this->getShipment() ?>
+<?php $_order          = $this->getOrder() ?>
+<?php $shippingAddress = $_order->getShippingAddress() ?>
+<div id="eparcel-block" class="grid">
+    <table>
+        <tr class="headings">
+            <th><?php echo $this->__('Label') ?></th>
+            <th class="last"><?php echo $this->__('Value') ?></th>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Charge Code') ?></td>
+            <td>
+                <select class="charge-code" name="buzz_c[charge_code]">
+                    <option selected value="X1"><?php echo $this->__('X1') ?></option>
+                    <option value="S1"><?php echo $this->__('S1') ?></option>
+                    <option value="XS"><?php echo $this->__('XS') ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Weight') ?></td>
+            <td><input class="required-entry" name="buzz_a[weight]" value="<?php echo $_order->getWeight() ?>" type="text"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Length') ?></td>
+            <td><input class="buzz-length" name="buzz_a[length]" value="28" type="text"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Width') ?></td>
+            <td><input class="buzz-width" name="buzz_a[width]" value="23" type="text"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Height') ?></td>
+            <td><input class="buzz-height" name="buzz_a[height]" value="3" type="text"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee Name') ?></td>
+            <td><input class="required-entry" name="buzz_c[consignee_name]" value="<?php echo $this->__($shippingAddress->getFirstname().' '.$shippingAddress->getLastname()) ?>"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee Company Name') ?></td>
+            <td><input name="buzz_c[consignee_company_name]" type="text" value="<?php echo $this->__($shippingAddress->getCompany()) ?>"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee Address Line 1') ?></td>
+            <td><input name="buzz_c[consignee_address_line_1]" value="<?php echo $_order->getShippingAddress()->getStreet1() ?>"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee Address Line 2') ?></td>
+            <td><input name="buzz_c[consignee_address_line_2]"
+                       value="<?php echo $_order->getShippingAddress()->getStreet2() ?>"></td>
+        </tr>
+        <tr style="display: none">
+            <td><?php echo $this->__('Consignee Address Line 3') ?></td>
+            <td><input name="buzz_c[consignee_address_line_3]" type="text"></td>
+        </tr>
+        <tr style="display: none">
+            <td><?php echo $this->__('Consignee Address Line 4') ?></td>
+            <td><input name="buzz_c[consignee_address_line_4]" type="text"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee Suburb') ?></td>
+            <td><input name="buzz_c[consignee_suburb]" type="text"
+                       value="<?php echo $this->__($shippingAddress->getCity()) ?>"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee State') ?></td>
+            <td><input name="buzz_c[consignee_state]" type="text"
+                       value="<?php echo $this->__($this->getRegionCodeById($shippingAddress->getData('region_id'))) ?>"
+                       readonly></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee Post code') ?></td>
+            <td><input class="validate-digits" name="buzz_c[consignee_post_code]" type="text"
+                       value="<?php echo $this->__($shippingAddress->getPostcode()) ?>"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee Phone Number') ?></td>
+            <td><input name="buzz_c[consignee_phone_number]" type="text"
+                       value="<?php echo $this->__($shippingAddress->getTelephone()) ?>"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Consignee email address') ?></td>
+            <td><input class="validate-email" name="buzz_c[consignee_email_address]" type="text"
+                       value="<?php echo $this->__($_order->getCustomerEmail()) ?>"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Are goods dangerous?') ?></td>
+            <td>
+                <select name="buzz_a[are_goods_dangerous]">
+                    <option value="Y"><?php echo $this->__('Y') ?></option>
+                    <option selected value="N"><?php echo $this->__('N') ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Insurance required?') ?></td>
+            <td>
+                <select class="insurance-required" name="buzz_a[insurance_required]">
+                    <option value="Y"><?php echo $this->__('Y') ?></option>
+                    <option selected value="N"><?php echo $this->__('N') ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Insurance amount') ?></td>
+            <td><input class="insurance-amount" name="buzz_a[insurance_amount]" type="text" readonly></td>
+        </tr>
+        <tr style="display: none">
+            <td><?php echo $this->__('Consignee country') ?></td>
+            <td><input name="buzz_c[consignee_country]" type="text" value="<?php echo $this->__($shippingAddress->getCountryId()) ?>" readonly></td>
+        </tr>
+        <tr style="display: none">
+            <td><?php echo $this->__('Print phone number?') ?></td>
+            <td><input name="buzz_c[print_phone_number]" type="text" value="<?php echo $this->__('Y') ?>" readonly></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Delivery Instructions') ?></td>
+            <td><input name="buzz_c[delivery_instructions]" type="text"></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Signature Required?') ?></td>
+            <td>
+                <select name="buzz_c[signature_required]">
+                    <option selected value="Y"><?php echo $this->__('Y') ?></option>
+                    <option value="N"><?php echo $this->__('N') ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr style="display: none">
+            <td><?php echo $this->__('Save to address book?') ?></td>
+            <td><input name="buzz_c[save_to_address_book]" type="text" value="Y" readonly></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Reference') ?></td>
+            <td><input name="buzz_c[reference]" type="text" value="<?php echo $this->__($_order->getIncrementId()) ?>" readonly></td>
+        </tr>
+        <tr style="display: none">
+            <td><?php echo $this->__('Print Reference?') ?></td>
+            <td><input name="buzz_c[print_reference]" type="text" value="Y" readonly></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Track Advice') ?></td>
+            <td><input name="buzz_c[track_advice]" type="text" value="<?php echo $this->__('TRACKADV') ?>" readonly></td>
+        </tr>
+        <tr style="display: none">
+            <td><input name="buzz_order_id" type="text" value="<?php echo $_order->getEntityId() ?>"></td>
+        </tr>
+    </table>
+    <?php if($this->_needSaveButton) : ?>
+        <div class="f-left">
+            <?php echo $this->getChildHtml('save_eparcel_button') ?>
+        </div>
+    <?php endif; ?>
+</div>
+<script type="text/javascript">
+
+    function submitEparcel() {
+        if (parcelForm.validate()) {
+            var area = $('eparcel-block').parentNode;
+            var url = '<?php echo $this->getSubmitUrl() ?>';
+            if ($(area)) {
+                var fields = $(area).select('input', 'select', 'textarea');
+                var data = Form.serializeElements(fields, true);
+                url = url + (url.match(new RegExp('\\?')) ? '&isAjax=true' : '?isAjax=true');
+                new Ajax.Request(url, {
+                    parameters: $H(data),
+                    loaderArea: area,
+                    onSuccess: function (transport) {
+                        try {
+                            if (transport.responseText.isJSON()) {
+                                var response = transport.responseText.evalJSON()
+                                if (response.error) {
+                                    alert(response.message);
+                                }
+                                if (response.ajaxExpired && response.ajaxRedirect) {
+                                    setLocation(response.ajaxRedirect);
+                                }
+                            } else {
+                                $(area).update(transport.responseText);
+                            }
+                            setLocation('<?php echo $_SERVER['HTTP_REFERER']; ?>');
+                        }
+                        catch (e) {
+                            $(area).update(transport.responseText);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    if ($('save_eparcel_button')) {
+        $('save_eparcel_button').observe('click', submitEparcel);
+    }
+    jQuery(document).ready(function(){
+        jQuery('select.insurance-required').change(function(){
+            if (jQuery(this).val() == 'Y') {
+                jQuery('input.insurance-amount').prop('readonly', false);
+            } else if(jQuery(this).val() == 'N'){
+                jQuery('input.insurance-amount').prop('readonly', true);
+            }
+        });
+
+        jQuery('.charge-code').change(function(){
+            if(jQuery(this).val() == 'XS') {
+                jQuery('.buzz-length').attr('value', '');
+                jQuery('.buzz-width').attr('value', '');
+                jQuery('.buzz-height').attr('value', '');
+            }
+        });
+    });
+
+    parcelForm = new varienForm('eparcel-block');
+</script>

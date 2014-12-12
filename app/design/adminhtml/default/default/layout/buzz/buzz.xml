@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_sales_order_shipment_view>
+        <reference name="form">
+            <action method="setTemplate"><value>buzz/view/form.phtml</value></action>
+            <block type="buzz/sales_order_shipment_eparcel" name="shipment.eparcel"></block>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>jquery/jquery-1.11.1.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/noconflict.js</script>
+            </action>
+        </reference>
+    </adminhtml_sales_order_shipment_view>
+    <adminhtml_sales_order_shipment_new>
+        <reference name="form">
+            <action method="setTemplate">
+                <value>buzz/sales/order/create/form.phtml</value>
+            </action>
+            <block type="buzz/sales_order_shipment_eparcel" name="shipment.eparcel"></block>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>jquery/jquery-1.11.1.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/noconflict.js</script>
+            </action>
+        </reference>
+    </adminhtml_sales_order_shipment_new>
+</layout>

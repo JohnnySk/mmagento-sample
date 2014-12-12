@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Web4pro_Buzz>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Web4pro_Buzz>
+    </modules>
+</config>
