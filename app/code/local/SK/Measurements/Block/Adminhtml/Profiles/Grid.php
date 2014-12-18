@@ -15,7 +15,7 @@ class SK_Measurements_Block_Adminhtml_Profiles_Grid extends Mage_Adminhtml_Block
             array('customer' => Mage::getConfig()->getTablePrefix().'customer_entity'),
             'e.customer_id = customer.entity_id',
             array(
-                'email' => 'customer_email'
+                'email' => 'email'
             )
         );
 
