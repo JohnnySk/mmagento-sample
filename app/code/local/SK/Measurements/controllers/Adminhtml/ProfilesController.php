@@ -27,10 +27,10 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
     public function editAction()
     {
         $id = (int)$this->getRequest()->getParam('id');
-        Mage::register('current_profile', Mage::getModel('measurements/profile')->load($id));
+        Mage::register('current_profile', Mage::getModel('sk_measurements/profile')->load($id));
 
         $this->loadLayout()->_setActiveMenu('measurements');
-        $this->_addContent($this->getLayout()->createBlock('sk_measurements/adminhtml_profile_edit'));
+        $this->_addContent($this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit'));
         $this->renderLayout();
     }
 }
