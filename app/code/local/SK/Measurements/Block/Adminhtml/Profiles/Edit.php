@@ -17,7 +17,7 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit extends Mage_Adminhtml_Block
         $this->_blockGroup = 'sk_measurements';
         $this->_controller = 'adminhtml_profiles';
 
-        parent::_construct();
+        parent::__construct();
     }
 
     /**

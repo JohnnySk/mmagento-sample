@@ -22,45 +22,6 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Form extends Mage_Adminhtml_
             'enctype' => 'multipart/form-data'
         ));
 
-        //create form elements for profile
-        $fieldset = $form->addFieldset('profile_form', array('legend' => $helper->__('Tariff Information')));
-
-        $fieldset->addField('weight', 'text', array(
-            'label' => $helper->__('Weight'),
-            'required' => true,
-            'name' => 'weight',
-        ));
-
-        $fieldset->addField('height', 'text', array(
-            'label'    => $helper->__('Height'),
-            'required' => true,
-            'name'     => 'height'
-        ));
-
-        $fieldset->addField('age', 'text', array(
-            'label'    => $helper->__('Age'),
-            'required' => true,
-            'name'     => 'age'
-        ));
-
-        $fieldset->addField('press', 'text', array(
-            'label'    => $helper->__('Press'),
-            'required' => true,
-            'name'     => 'press'
-        ));
-
-        $fieldset->addField('deadlift', 'text', array(
-            'label'    => $helper->__('Deadlift'),
-            'required' => true,
-            'name'     => 'deadlift'
-        ));
-
-        $fieldset->addField('squat', 'text', array(
-            'label'    => $helper->__('Squat'),
-            'required' => true,
-            'name'     => 'Squat'
-        ));
-
         $form->setUseContainer(true);
         $this->setForm($form);
 
