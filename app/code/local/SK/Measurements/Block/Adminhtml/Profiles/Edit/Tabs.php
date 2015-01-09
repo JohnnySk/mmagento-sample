@@ -29,6 +29,25 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tabs extends Mage_Adminhtml_
         return parent::_beforeToHtml();
     }
 
+    protected function _prepareLayout()
+    {
+        $profile = $this->getProfile();
+        $entity = Mage::getModel('eav/entity_type')->load('sk_measurements_profile', 'entity_type_code');
+        $attributes = Mage::getResourceModel('eav/entity_attribute_collection')
+            ->setEntityTypeFilter($entity->getEntityTypeId());
+        //$attributes->addFieldToFilter('attribute_code', array('nin' => array('meta_title', 'meta_description', 'meta_keywords')));
+        $attributes->getSelect()->order('additional_table.position', 'ASC');
+
+        $this->addTab('info', array(
+            'label' => Mage::helper('sk_measurements')->__('Profile Information'),
+            'content' => $this->getLayout()->createBlock('sk_measurements/adminhtml_profile_edit_tab_attributes')
+                ->setAttributes($attributes)
+                ->toHtml(),
+        ));
+
+        return parent::_beforeToHtml();
+    }
+
     protected function _updateActiveTab()
     {
         $tabId = $this->getRequest()->getParam('tab');
@@ -38,5 +57,10 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tabs extends Mage_Adminhtml_
                 $this->setActiveTab($tabId);
             }
         }
+    }
+
+    public function getProfile()
+    {
+        return Mage::registry('current_profile');
     }
 }

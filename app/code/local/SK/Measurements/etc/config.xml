@@ -2,7 +2,7 @@
 <config>
     <modules>
         <SK_Measurements>
-            <version>1.1.0</version>
+            <version>0.0.0</version>
         </SK_Measurements>
     </modules>
     <global>
@@ -17,15 +17,9 @@
                     <profile>
                         <table>sk_measurements_profile_entity</table>
                     </profile>
-                    <profile_entity_varchar>
-                        <table>sk_measurements_profile_entity_varchar</table>
-                    </profile_entity_varchar>
-                    <profile_entity_text>
-                        <table>sk_measurements_profile_entity_text</table>
-                    </profile_entity_text>
-                    <profile_entity_int>
-                        <table>sk_measurements_profile_entity_int</table>
-                    </profile_entity_int>
+                    <eav_attribute>
+                        <table>sk_measurements_profile_eav_attribute</table>
+                    </eav_attribute>
                 </entities>
             </sk_measurements_resource>
         </models>
@@ -58,6 +52,24 @@
             </sk_measurements_read>
         </resources>
     </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <sk_measurements>
+                    <file>measurements_profile.xml</file>
+                </sk_measurements>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <SK_Measurements>
+                    <files>
+                        <default>SK_Measurements.csv</default>
+                    </files>
+                </SK_Measurements>
+            </modules>
+        </translate>
+    </adminhtml>
 
     <admin>
         <routers>

@@ -1,12 +1,28 @@
 <?xml version="1.0"?>
 <config>
     <menu>
-        <measurements translate="title" module="sk_measurements">
-            <title>Measurements Profiles</title>
-            <!-- This is the URL of what we want the menu item to link to -->
-            <action>measurements_admin/adminhtml_profiles</action>
-            <sort_order>50</sort_order>
-        </measurements>
+        <customer>
+            <children>
+                <measurements translate="title" module="sk_measurements">
+                    <title>Measurements</title>
+                    <sort_order>10</sort_order>
+                    <children>
+                        <profiles>
+                            <title>Profiles</title>
+                            <!-- This is the URL of what we want the menu item to link to -->
+                            <action>measurements_admin/adminhtml_profiles</action>
+                            <sort_order>0</sort_order>
+                        </profiles>
+                        <profiles_attributes>
+                            <title>Manage Profile Attributes</title>
+                            <!-- This is the URL of what we want the menu item to link to -->
+                            <action>measurements_admin/adminhtml_profile_attribute</action>
+                            <sort_order>1</sort_order>
+                        </profiles_attributes>
+                    </children>
+                </measurements>
+            </children>
+        </customer>
     </menu>
     <acl>
         <resources>

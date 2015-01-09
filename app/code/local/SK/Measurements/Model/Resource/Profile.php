@@ -19,4 +19,11 @@ class SK_Measurements_Model_Resource_Profile extends Mage_Eav_Model_Entity_Abstr
             $resource->getConnection('sk_measurements_write')
         );
     }
+
+    public function getMainTable()
+    {
+        return $this->getEntityTable();
+    }
+
+
 }

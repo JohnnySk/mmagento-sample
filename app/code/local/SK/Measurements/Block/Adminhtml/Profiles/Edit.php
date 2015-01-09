@@ -14,10 +14,10 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit extends Mage_Adminhtml_Block
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->_blockGroup = 'sk_measurements';
         $this->_controller = 'adminhtml_profiles';
-
-        parent::__construct();
     }
 
     /**
