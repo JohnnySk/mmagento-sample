@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<layout version="0.0.1">
+    <adminhtml_salesreport_form>
+        <reference name="content">
+            <block type="salesreport/adminhtml_form" name="salesreport.date.form" />
+        </reference>
+    </adminhtml_salesreport_form>
+</layout>

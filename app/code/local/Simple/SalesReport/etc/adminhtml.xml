@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Web4pro
+ *
+ * @category    Web4pro
+ * @package     Web4pro_Advert
+ * @copyright   Copyright (c) 2014 Web4Pro
+ */
+-->
+<config>
+    <menu>
+        <sales>
+            <children>
+                <salesreport translate="title" module="salesreport">
+                    <title>Simple Sales Report</title>
+                    <sort_order>500</sort_order>
+                    <action>adminhtml/salesreport/form</action>
+                </salesreport>
+            </children>
+        </sales>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <salesreport translate="title" module="salesreport">
+                                <title>Simple Sales Report</title>
+                                <sort_order>500</sort_order>
+                            </salesreport>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

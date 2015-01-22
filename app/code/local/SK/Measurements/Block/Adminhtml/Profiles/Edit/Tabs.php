@@ -16,18 +16,18 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tabs extends Mage_Adminhtml_
         $this->setTitle(Mage::helper('sk_measurements')->__('Profile Information'));
     }
 
-    protected function _beforeToHtml()
+    /*protected function _beforeToHtml()
     {
         $this->addTab('customers', array(
             'label' => Mage::helper('sk_measurements')->__('Customers'),
-            'class' => 'ajax',
-            'url' => $this->getUrl('*/*/customers', array('_current' => true)),
-        ));
+            'class' => 'ajax',*/
+            //'url' => $this->getUrl('*/*/customers', array('_current' => true)),
+        /*));
 
         $this->_updateActiveTab();
         Varien_Profiler::stop('profile/tabs');
         return parent::_beforeToHtml();
-    }
+    }*/
 
     protected function _prepareLayout()
     {
@@ -38,9 +38,15 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tabs extends Mage_Adminhtml_
         //$attributes->addFieldToFilter('attribute_code', array('nin' => array('meta_title', 'meta_description', 'meta_keywords')));
         $attributes->getSelect()->order('additional_table.position', 'ASC');
 
+        $this->addTab('customers', array(
+            'label' => Mage::helper('sk_measurements')->__('Attached Customer'),
+            'content' => $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers')
+                ->toHtml(),
+        ));
+
         $this->addTab('info', array(
             'label' => Mage::helper('sk_measurements')->__('Profile Information'),
-            'content' => $this->getLayout()->createBlock('sk_measurements/adminhtml_profile_edit_tab_attributes')
+            'content' => $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_attributes')
                 ->setAttributes($attributes)
                 ->toHtml(),
         ));

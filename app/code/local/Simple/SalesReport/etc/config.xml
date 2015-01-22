@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Simple_SalesReport>
+            <version>0.0.1</version>
+        </Simple_SalesReport>
+    </modules>
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <salesreport>
+                    <file>simple/salesreport.xml</file>
+                </salesreport>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Simple_SalesReport>
+                    <files>
+                        <default>Simple_SalesReport.csv</default>
+                    </files>
+                </Simple_SalesReport>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <admin>
+        <routers>
+             <adminhtml>
+                 <args>
+                     <modules>
+                         <salesreport before="Mage_Adminhtml">Simple_SalesReport_Adminhtml</salesreport>
+                     </modules>
+                 </args>
+             </adminhtml>
+        </routers>
+    </admin>
+
+    <global>
+        <helpers>
+            <salesreport>
+                <class>Simple_SalesReport_Helper</class>
+            </salesreport>
+        </helpers>
+        <blocks>
+            <salesreport>
+                <class>Simple_SalesReport_Block</class>
+            </salesreport>
+        </blocks>
+        <models>
+            <salesreport>
+                <class>Simple_SalesReport_Model</class>
+                <resourceModel>salesreport_resource</resourceModel>
+            </salesreport>
+            <salesreport_resource />
+        </models>
+    </global>
+</config>

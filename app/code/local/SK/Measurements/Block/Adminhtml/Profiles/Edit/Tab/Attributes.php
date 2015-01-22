@@ -38,7 +38,7 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tab_Attributes extends Mage_
             $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset')
         );
         Varien_Data_Form::setFieldsetElementRenderer(
-            $this->getLayout()->createBlock('easylife_news/adminhtml_news_renderer_fieldset_element')
+            $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_renderer_fieldset_element')
         );
     }
 

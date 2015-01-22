@@ -46,6 +46,8 @@ $table = $installer->getConnection()
     ->addForeignKey($this->getFkName('sk_measurements/profile', 'entity_type_id', 'eav/entity_type', 'entity_type_id'),
         'entity_type_id', $this->getTable('eav/entity_type'), 'entity_type_id',
         Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE)
+    ->addColumn('customer_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(), 'Customer Entity Id')
+    ->addForeignKey('profile_customer_id', 'customer_id', $installer->getTable('customer/entity'), 'entity_id')
     ->setComment('Sk Measurements Profile Table');
 $installer->getConnection()->createTable($table);
 //create the attribute values tables (int, decimal, varchar, text, datetime)

@@ -2,7 +2,7 @@
 <config>
     <modules>
         <SK_Measurements>
-            <version>0.0.0</version>
+            <version>1.0.0</version>
         </SK_Measurements>
     </modules>
     <global>

@@ -19,4 +19,5 @@ class SK_Measurements_Block_Adminhtml_Profiles extends Mage_Adminhtml_Block_Widg
         $this->_headerText = $helper->__('Profiles Management');
         $this->_addButtonLabel = $helper->__('Add Profile');
     }
+
 }

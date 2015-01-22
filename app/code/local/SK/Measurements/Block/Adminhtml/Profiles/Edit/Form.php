@@ -25,11 +25,11 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Form extends Mage_Adminhtml_
         $form->setUseContainer(true);
         $this->setForm($form);
 
-        if ($data = Mage::getSingleton('adminhtml/session')->getFormData()) {
+        /*if ($data = Mage::getSingleton('adminhtml/session')->getFormData()) {
             $form->setValues($data);
         } else {
             $form->setValues($profile->getData());
-        }
+        }*/
 
         return parent::_prepareForm();
     }
