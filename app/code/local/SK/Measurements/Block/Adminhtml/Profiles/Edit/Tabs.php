@@ -51,7 +51,7 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tabs extends Mage_Adminhtml_
                 ->toHtml(),
         ));
 
-        return parent::_beforeToHtml();
+        return parent::_prepareLayout();
     }
 
     protected function _updateActiveTab()

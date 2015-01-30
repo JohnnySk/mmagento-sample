@@ -9,6 +9,11 @@
 class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Controller_Action
 {
 
+    protected function _construct()
+    {
+        $this->setUsedModuleName('Sk_Measurements');
+    }
+
     protected function _initProfile()
     {
         $this->_title($this->__('Measurements'))
@@ -28,9 +33,12 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
     {
         $this->loadLayout();
         $this->_setActiveMenu('measurements');
-        
-        $contentBlock = $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles');
-        $this->_addContent($contentBlock);
+
+        /**
+         * This functional exists in layout
+         */
+        //$contentBlock = $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles');
+        //$this->_addContent($contentBlock);
         $this->renderLayout();
     }
 
@@ -86,10 +94,7 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
             $profileData = $this->getRequest()->getPost('profile', array());
             $profile->addData($profileData);
             $profile->setAttributeSetId($profile->getDefaultAttributeSetId());
-                foreach ($useDefaults as $attributeCode) {
-                    $profile->setData($attributeCode, false);
-                }
-            }
+
             try {
                 $profile->save();
                 $profileId = $profile->getId();
@@ -108,7 +113,7 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
         }
         if ($redirectBack) {
             $this->_redirect('*/*/edit', array(
-                'id' => $articleId,
+                'id' => $profileId,
                 '_current' => true
             ));
         } else {
