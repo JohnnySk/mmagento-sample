@@ -57,11 +57,11 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tab_Customers extends Mage_A
     {
         $this->addColumn('attached_customer', array(
             'header_css_class' => 'a-center',
-            'type'             => 'radio',
+            'type'             => 'checkbox',
             'name'             => 'attached_customer',
             'field_name'       => 'attached_customer',
             'disabled'         => false,
-            'value'            => $this->getAttachedCustomer(),
+            'value'            => $this->_getAttachedCustomer(),
             'align'            => 'center',
             'index'            => 'entity_id'
         ));

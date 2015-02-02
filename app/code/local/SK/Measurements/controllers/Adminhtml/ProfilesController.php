@@ -96,6 +96,7 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
             $profile->setAttributeSetId($profile->getDefaultAttributeSetId());
 
             try {
+                //we have an error in save method
                 $profile->save();
                 $profileId = $profile->getId();
                 $this->_getSession()->addSuccess(Mage::helper('sk_measurements')->__('Profile was saved'));
