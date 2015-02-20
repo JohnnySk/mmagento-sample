@@ -15,6 +15,7 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tab_Customers extends Mage_A
         $this->setDefaultSort('email', 'asc');
         $this->setSkipGenerateContent(true);
         $this->setUseAjax(true);
+        $this->setSaveParametersInSession(true);
        /* if (Mage::registry('current_profile')) {
             $this->setDefaultFilter(array('attached_customer' => 1));
         }*/
@@ -57,11 +58,10 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tab_Customers extends Mage_A
     {
         $this->addColumn('attached_customer', array(
             'header_css_class' => 'a-center',
-            'type'             => 'checkbox',
-            'name'             => 'attached_customer',
-            'field_name'       => 'attached_customer',
+            'type'             => 'radio',
+            'html_name'        => 'attached_customer',
             'disabled'         => false,
-            'value'            => $this->_getAttachedCustomer(),
+            'value'            => $this->getAttachedCustomer(),
             'align'            => 'center',
             'index'            => 'entity_id'
         ));
@@ -92,9 +92,12 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tab_Customers extends Mage_A
         return parent::_prepareColumns();
     }
     
-    protected function _getAttachedCustomer()
+    public function getAttachedCustomer()
     {
-        $attachedCustomerId = $this->getCurrentProfile()->getCustomerId();
+        $attachedCustomerId = null;
+        if($this->getCurrentProfile()){
+           $attachedCustomerId = $this->getCurrentProfile()->getCustomerId();
+        }
 
         return $attachedCustomerId;
     }
@@ -103,7 +106,7 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tab_Customers extends Mage_A
     {
         if ($column->getId() == "attached_customer") {
 
-            $customerId = $this->_getAttachedCustomer();
+            $customerId = $this->getAttachedCustomer();
 
             if (empty($customerId)) {
                 $customerId = 0;
@@ -119,5 +122,10 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tab_Customers extends Mage_A
         }
 
         return $this;
+    }
+    
+    public function getGridUrl()
+    {
+        return $this->getUrl('*/*/customerAjax', array('_current' => true));
     }
 }

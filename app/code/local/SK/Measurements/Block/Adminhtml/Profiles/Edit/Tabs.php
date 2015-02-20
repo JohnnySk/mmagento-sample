@@ -40,8 +40,8 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tabs extends Mage_Adminhtml_
 
         $this->addTab('customers', array(
             'label' => Mage::helper('sk_measurements')->__('Attached Customer'),
-            'content' => $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers')
-                ->toHtml(),
+            'url' => $this->getUrl('*/*/customers', array('current' => true)),
+            'class' => 'ajax'
         ));
 
         $this->addTab('info', array(

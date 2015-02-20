@@ -93,6 +93,9 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
             $profile = $this->_initProfile();
             $profileData = $this->getRequest()->getPost('profile', array());
             $profile->addData($profileData);
+            if($data['attached_customer'] && !empty($data['attached_customer'])) {
+                $profile->setCustomerId($data['attached_customer']);
+            }
             $profile->setAttributeSetId($profile->getDefaultAttributeSetId());
 
             try {
@@ -212,7 +215,7 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
     public function exportXmlAction()
     {
         $fileName = 'profile.xml';
-        $content = $this->getLayout()->createBlock('sk_measurements/adminhtml_profile_grid')
+        $content = $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_grid')
             ->getXml();
         $this->_prepareDownloadResponse($fileName, $content);
     }
@@ -230,4 +233,21 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
         ));
         $this->getResponse()->setBody($content->toHtml());
     }*/
+
+    public function customersAction()
+    {
+        $this->loadLayout();
+        $grid = $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers');
+        $serializer = $this->getLayout()->createBlock('adminhtml/widget_grid_serializer');
+        $serializer->initSerializerBlock($grid, 'getAttachedCustomer', 'measurement[customer]', 'attached_customer');
+        $serializer->addColumnInputName('attached_customer');
+
+        $this->getResponse()->setBody($grid->toHtml() . $serializer->toHtml());
+    }
+
+    public function customerAjaxAction()
+    {
+        $this->loadLayout();
+        $this->getResponse()->setBody($this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers')->toHtml());
+    }
 }
