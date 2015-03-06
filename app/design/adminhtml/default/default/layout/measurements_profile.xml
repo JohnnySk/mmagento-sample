@@ -39,6 +39,22 @@
         </reference>-->
     </measurements_admin_adminhtml_profiles_edit>
 
+    <measurements_admin_adminhtml_profiles_customers>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="sk_measurements/adminhtml_profiles_edit_tab_customers" name="attached.customers.grid"/>
+            <block type="adminhtml/widget_grid_serializer" name="attached_customers_grid_serializer">
+                <reference name="attached_customers_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>attached.customers.grid</grid_block_name>
+                        <data_callback>getAttachedCustomer</data_callback>
+                        <hidden_input_name>profile_customer</hidden_input_name>
+                        <reload_param_name>attached_customer</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </measurements_admin_adminhtml_profiles_customers>
+
     <adminhtml_news_article_attribute_index>
         <reference name="content">
             <block type="sk_measurements/adminhtml_profile_attribute" name="attribute_grid"></block>

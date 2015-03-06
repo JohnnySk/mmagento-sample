@@ -9,6 +9,8 @@
 class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Controller_Action
 {
 
+    protected $_profile;
+
     protected function _construct()
     {
         $this->setUsedModuleName('Sk_Measurements');
@@ -20,13 +22,13 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
             ->_title($this->__('Manage Profiles'));
 
         $profileId = (int)$this->getRequest()->getParam('id');
-        $profile = Mage::getModel('sk_measurements/profile');
+        $this->_profile = Mage::getModel('sk_measurements/profile');
 
         if ($profileId) {
-            $profile->load($profileId);
+            $this->_profile->load($profileId);
         }
-        Mage::register('current_profile', $profile);
-        return $profile;
+        Mage::register('current_profile', $this->_profile);
+        return $this->_profile;
     }
     /***/
     public function indexAction()
@@ -236,18 +238,27 @@ class SK_Measurements_Adminhtml_ProfilesController extends Mage_Adminhtml_Contro
 
     public function customersAction()
     {
+        $this->_initProfile();
         $this->loadLayout();
-        $grid = $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers');
+        $this->getLayout()->getBlock('attached.customers.grid')
+            ->setAttachedCustomer($this->getRequest()->getPost('attached_customer', null));
+        $this->renderLayout();
+        return $this;
+        /*$grid = $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers');
         $serializer = $this->getLayout()->createBlock('adminhtml/widget_grid_serializer');
         $serializer->initSerializerBlock($grid, 'getAttachedCustomer', 'measurement[customer]', 'attached_customer');
-        $serializer->addColumnInputName('attached_customer');
 
-        $this->getResponse()->setBody($grid->toHtml() . $serializer->toHtml());
+        $this->getResponse()->setBody($grid->toHtml() . $serializer->toHtml());*/
     }
 
     public function customerAjaxAction()
     {
+        $this->_initProfile();
         $this->loadLayout();
-        $this->getResponse()->setBody($this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers')->toHtml());
+        $gridBlock = $this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers');
+        $gridBlock->setAttachedCustomer($this->getRequest()->getPost('attached_customer', null));
+        $this->getResponse()->setBody($gridBlock->toHtml());
+        return $this;
+        //$this->getResponse()->setBody($this->getLayout()->createBlock('sk_measurements/adminhtml_profiles_edit_tab_customers')->toHtml());
     }
 }
