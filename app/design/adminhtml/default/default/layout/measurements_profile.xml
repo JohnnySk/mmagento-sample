@@ -47,7 +47,7 @@
                     <action method="initSerializerBlock">
                         <grid_block_name>attached.customers.grid</grid_block_name>
                         <data_callback>getAttachedCustomer</data_callback>
-                        <hidden_input_name>profile_customer</hidden_input_name>
+                        <hidden_input_name>attached_customer</hidden_input_name>
                         <reload_param_name>attached_customer</reload_param_name>
                     </action>
                 </reference>

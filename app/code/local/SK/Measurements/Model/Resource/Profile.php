@@ -5,7 +5,7 @@
  * Date: 02.12.14
  * Time: 14:44
  */
-class SK_Measurements_Model_Resource_Profile extends Mage_Eav_Model_Entity_Abstract
+class SK_Measurements_Model_Resource_Profile extends Mage_Catalog_Model_Resource_Abstract
 {
     /***/
     public function __construct()

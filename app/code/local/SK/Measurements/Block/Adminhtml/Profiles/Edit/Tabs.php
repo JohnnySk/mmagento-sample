@@ -16,19 +16,6 @@ class SK_Measurements_Block_Adminhtml_Profiles_Edit_Tabs extends Mage_Adminhtml_
         $this->setTitle(Mage::helper('sk_measurements')->__('Profile Information'));
     }
 
-    /*protected function _beforeToHtml()
-    {
-        $this->addTab('customers', array(
-            'label' => Mage::helper('sk_measurements')->__('Customers'),
-            'class' => 'ajax',*/
-            //'url' => $this->getUrl('*/*/customers', array('_current' => true)),
-        /*));
-
-        $this->_updateActiveTab();
-        Varien_Profiler::stop('profile/tabs');
-        return parent::_beforeToHtml();
-    }*/
-
     protected function _prepareLayout()
     {
         $profile = $this->getProfile();
