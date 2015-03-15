@@ -42,12 +42,12 @@
             </sk_measurements_setup>
             <sk_measurements_write>
                 <connection>
-                    <use>default_write</use>
+                    <use>core_write</use>
                 </connection>
             </sk_measurements_write>
             <sk_measurements_read>
                 <connection>
-                    <use>default_read</use>
+                    <use>core_read</use>
                 </connection>
             </sk_measurements_read>
         </resources>
